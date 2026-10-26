@@ -14,7 +14,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2 # 关键：装 Flutter SDK（含 Android 工具链）
         with:
-          channel: stable
+          flutter-version: '3.44.8'
           java-version: '17'
 
       - name: Accept Android licenses
@@ -31,7 +31,7 @@ jobs:
       - name: Build arm64 APK
         working-directory: .           # 项目根目录，和 assets/ 同级
         run: |
-          flet build apk \
+          yes|flet build apk \
             --flutter-build-args=--target-platform \
             --flutter-build-args=android-arm64
 
