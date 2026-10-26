@@ -16,11 +16,15 @@ jobs:
         with:
           lfs: true
 
+      - uses: actions/setup-java@v4        # ← 新增，单独装 Java
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.44.8'
-          java-version: '17'
-          cache: true                  # 缓存 SDK，下次运行直接复用
+          cache: true
 
       - name: Accept Android licenses
         run: yes | flutter doctor --android-licenses
