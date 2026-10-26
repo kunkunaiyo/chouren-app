@@ -4,18 +4,23 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:                                  # 关键：全局走国内镜像
+  FLUTTER_STORAGE_BASE_URL: https://storage.flutter-io.cn   # Flutter SDK + 引擎产物镜像
+  PUB_HOSTED_URL: https://pub.flutter-io.cn                 # pub 依赖包镜像
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          lfs: true                     # 保险起见，图片走 Git LFS 时也不会缺
+          lfs: true
 
-      - uses: subosito/flutter-action@v2 # 关键：装 Flutter SDK（含 Android 工具链）
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.44.8'
           java-version: '17'
+          cache: true                  # 缓存 SDK，下次运行直接复用
 
       - name: Accept Android licenses
         run: yes | flutter doctor --android-licenses
@@ -29,9 +34,9 @@ jobs:
         run: pip install flet
 
       - name: Build arm64 APK
-        working-directory: .           # 项目根目录，和 assets/ 同级
+        working-directory: .          # 项目根目录，和 assets/ 同级
         run: |
-          yes|flet build apk \
+          yes | flet build apk \
             --flutter-build-args=--target-platform \
             --flutter-build-args=android-arm64
 
