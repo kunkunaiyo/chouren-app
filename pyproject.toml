@@ -7,5 +7,3 @@ requires-python = ">=3.12,<3.13"
 [tool.flet]
 product = "奶蛙抽人"  
 
-[tool.flet.icons]
-android = "assets/chouren-logo.png"         
