@@ -8,4 +8,4 @@ requires-python = ">=3.12,<3.13"
 product = "奶蛙抽人"  
 
 [tool.flet.icons]
-android = "chouren-logo.png"         
+android = "assets/chouren-logo.png"         
