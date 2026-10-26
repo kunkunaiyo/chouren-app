@@ -5,5 +5,7 @@ description = "随机抽人App"
 requires-python = ">=3.12,<3.13"
 
 [tool.flet]
-product = "抽人神器"
-org = "com.mytest"
+product = "奶蛙抽人"  
+
+[tool.flet.icons]
+android = "chouren-logo.png"         
